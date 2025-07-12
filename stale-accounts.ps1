@@ -5,4 +5,7 @@ Where-Object { $_.LastLogonDate -lt $threshold } |
 Select-Object Name, LastLogonDate |
 Export-Csv -Path "./sample-output/stale-users.csv" -NoTypeInformation
 
-
+Get-ADComputer -Filter * -Properties LastLogonDate |
+Where-Object { $_.LastLogonDate -lt $threshold } |
+Select-Object Name, LastLogonDate |
+Export-Csv -Path "./sample-output/stale-computers.csv" -NoTypeInformation
